@@ -3,13 +3,6 @@ package domain;
 import java.time.LocalDate;
 
 public class Product {
-    private static final int SCALE = 3; // 3 знака след десетичната
-
-    private static double round3(double v) {
-        double p = 1000.0;
-        return Math.round(v * p) / p;
-    }
-
     private String name;
     private String manufacturer;
     private Unit unit;
@@ -34,7 +27,7 @@ public class Product {
         this.name = name;
         this.manufacturer = manufacturer;
         this.unit = unit;
-        setQuantity(quantity);
+        this.quantity = quantity;
         this.expiryDate = expiryDate;
         this.arrivalDate = arrivalDate;
         this.location = location;
@@ -53,30 +46,11 @@ public class Product {
     public void setName(String name) { this.name = name; }
     public void setManufacturer(String manufacturer) { this.manufacturer = manufacturer; }
     public void setUnit(Unit unit) { this.unit = unit; }
-
-    public void setQuantity(double quantity) {
-        this.quantity = round3(quantity);
-    }
-
+    public void setQuantity(double quantity) { this.quantity = quantity; }
     public void setExpiryDate(LocalDate expiryDate) { this.expiryDate = expiryDate; }
     public void setArrivalDate(LocalDate arrivalDate) { this.arrivalDate = arrivalDate; }
     public void setLocation(Location location) { this.location = location; }
     public void setComment(String comment) { this.comment = comment; }
-
-    public void addQuantity(double add) {
-        if (add < 0) throw new IllegalArgumentException("add must be >= 0");
-        this.quantity = round3(this.quantity + add);
-    }
-
-    public void removeQuantity(double remove) {
-        if (remove < 0) throw new IllegalArgumentException("remove must be >= 0");
-        if (remove > this.quantity) throw new IllegalArgumentException("not enough quantity");
-        this.quantity = round3(this.quantity - remove);
-    }
-
-    public boolean isEmpty() {
-        return round3(quantity) == 0.0;
-    }
 
     @Override
     public String toString() {
