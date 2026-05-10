@@ -1,8 +1,8 @@
 package cli;
 
-public class BaseCommand {
+public abstract class BaseCommand implements Command {
     protected void requireOpen(CommandContext ctx) {
-        if (!ctx.hasOpenFile()) {
+        if (ctx == null || !ctx.hasOpenFile()) {
             throw new IllegalStateException("No open file. Use 'open <file>'.");
         }
     }
