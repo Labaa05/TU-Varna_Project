@@ -1,9 +1,6 @@
 package infra;
 
-import domain.Location;
-import domain.Product;
-import domain.Unit;
-import domain.Warehouse;
+import domain.*;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -12,6 +9,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +21,8 @@ public class WarehouseFileHandler {
 
         for (Product p : wh.all()) {
             lines.add(
-                    p.getName() + ";" +
+                    "P;" +
+                            p.getName() + ";" +
                             p.getManufacturer() + ";" +
                             p.getUnit() + ";" +
                             p.getQuantity() + ";" +
@@ -33,6 +32,22 @@ public class WarehouseFileHandler {
                             p.getLocation().getShelf() + ";" +
                             p.getLocation().getNumber() + ";" +
                             (p.getComment() == null ? "" : p.getComment())
+            );
+        }
+
+        for (LogEntry e : wh.log()) {
+            lines.add(
+                    "L;" +
+                            e.getTimestamp() + ";" +
+                            e.getType() + ";" +
+                            e.getName() + ";" +
+                            e.getManufacturer() + ";" +
+                            e.getUnit() + ";" +
+                            e.getQuantity() + ";" +
+                            e.getLocation().getSection() + ";" +
+                            e.getLocation().getShelf() + ";" +
+                            e.getLocation().getNumber() + ";" +
+                            (e.getNote() == null ? "" : e.getNote())
             );
         }
 
@@ -56,22 +71,41 @@ public class WarehouseFileHandler {
         for (String line : lines) {
             if (line.trim().isEmpty() || line.equals("WAREHOUSE_V1")) continue;
 
-            String[] a = line.split(";", -1);
-            if (a.length < 10) continue;
+            if (line.startsWith("L;")) {
+                String[] a = line.split(";", -1);
+                if (a.length < 11) continue;
 
-            Product pr = new Product(
-                    a[0],
-                    a[1],
-                    Unit.valueOf(a[2]),
-                    Double.parseDouble(a[3]),
-                    LocalDate.parse(a[4]),
-                    LocalDate.parse(a[5]),
-                    new Location(a[6], Integer.parseInt(a[7]), Integer.parseInt(a[8])),
-                    a[9].isEmpty() ? null : a[9]
-            );
-            wh.add(pr);
+                LogEntry le = new LogEntry(
+                        LocalDateTime.parse(a[1]),
+                        LogType.valueOf(a[2]),
+                        a[3],
+                        a[4],
+                        Unit.valueOf(a[5]),
+                        Double.parseDouble(a[6]),
+                        new Location(a[7], Integer.parseInt(a[8]), Integer.parseInt(a[9])),
+                        a[10].isEmpty() ? null : a[10]
+                );
+                wh.addLogInternal(le);
+                continue;
+            }
+
+            if (line.startsWith("P;")) {
+                String[] a = line.split(";", -1);
+                if (a.length < 11) continue;
+
+                Product pr = new Product(
+                        a[1],
+                        a[2],
+                        Unit.valueOf(a[3]),
+                        Double.parseDouble(a[4]),
+                        LocalDate.parse(a[5]),
+                        LocalDate.parse(a[6]),
+                        new Location(a[7], Integer.parseInt(a[8]), Integer.parseInt(a[9])),
+                        a[10].isEmpty() ? null : a[10]
+                );
+                wh.add(pr);
+            }
         }
-
         return wh;
     }
 }

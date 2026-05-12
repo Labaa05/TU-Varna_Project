@@ -3,6 +3,7 @@ package domain;
 import java.time.LocalDateTime;
 
 public class LogEntry {
+
     private LocalDateTime timestamp;
     private LogType type;
 
@@ -46,4 +47,14 @@ public class LogEntry {
     public void setQuantity(double quantity) { this.quantity = quantity; }
     public void setLocation(Location location) { this.location = location; }
     public void setNote(String note) { this.note = note; }
+
+    @Override
+    public String toString() {
+        java.time.format.DateTimeFormatter fmt = java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        return timestamp.format(fmt) + " | " + type + " | " +
+                name + " | " + manufacturer + " | " + unit +
+                " | qty=" + quantity +
+                " | loc=" + location +
+                (note == null || note.trim().isEmpty() ? "" : " | " + note);
+    }
 }

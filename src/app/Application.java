@@ -16,6 +16,9 @@ public class Application {
         all.add(new CloseCommand());
         all.add(new SaveCommand());
         all.add(new ExitCommand());
+        all.add(new PrintCommand());
+        all.add(new AddCommand());
+        all.add(new LogCommand());
 
         all.add(new HelpCommand(all));
 
