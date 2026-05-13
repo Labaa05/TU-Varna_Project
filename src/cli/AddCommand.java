@@ -17,6 +17,10 @@ public class AddCommand extends BaseCommand {
         return "add <name> <manufacturer> <unit> <qty> <expiry> <arrival> <section> <shelf> <number> [comment]";
     }
 
+    private double round3(double v) {
+        return Math.round(v * 1000.0) / 1000.0;
+    }
+
     @Override
     public String execute(CommandContext ctx, String[] args) {
         requireOpen(ctx);
@@ -29,7 +33,7 @@ public class AddCommand extends BaseCommand {
 
             Unit unit = Unit.valueOf(args[2].toUpperCase());
 
-            double qty = Double.parseDouble(args[3]);
+            double qty = round3(Double.parseDouble(args[3]));
 
             LocalDate expiry = LocalDate.parse(args[4]);
             LocalDate arrival = LocalDate.parse(args[5]);
