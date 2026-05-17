@@ -13,6 +13,10 @@ import java.util.List;
 
 public class RemoveCommand extends BaseCommand {
 
+    /**
+     * Команда remove: премахва количество от продукта по FEFO (най-ранен срок първо) и логва промяната.
+     */
+
     private double round3(double v) {
         return Math.round(v * 1000.0) / 1000.0;
     }

@@ -8,6 +8,11 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class LossesCommand extends BaseCommand {
+
+    /**
+     * Команда losses: изчислява загубите за период по продукт и цена на база изхвърлените (expired) количества.
+     */
+
     @Override public String name() { return "losses"; }
 
     @Override
@@ -48,7 +53,7 @@ public class LossesCommand extends BaseCommand {
             }
 
             double total = expiredQty * price;
-            return "Losses: expiredQty=" + expiredQty + " * price=" + price + " = " + total;
+            return String.format("Losses: expiredQty=%.3f * price=%.2f = %.2f", expiredQty, price, total);
         } catch (Exception e) {
             return "Usage: " + help();
         }

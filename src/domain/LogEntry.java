@@ -4,6 +4,10 @@ import java.time.LocalDateTime;
 
 public class LogEntry {
 
+    /**
+     * Запис в лога за промяна в склада (ADD/REMOVE/CLEAN) с дата/час, продукт и количество.
+     */
+
     private LocalDateTime timestamp;
     private LogType type;
 

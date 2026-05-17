@@ -10,6 +10,11 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class AddCommand extends BaseCommand {
+
+    /**
+     * Команда add: добавя продукт/партида в склада и записва промяната в лога.
+     */
+
     @Override public String name() { return "add"; }
 
     @Override

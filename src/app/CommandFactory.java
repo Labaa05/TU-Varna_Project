@@ -5,6 +5,10 @@ import cli.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Сглобява и регистрира всички команди в приложението (bootstrapping).
+ * Връща готов CommandLoop, който може да бъде стартиран от Application.
+ */
 public class CommandFactory {
     public static CommandLoop build() {
 

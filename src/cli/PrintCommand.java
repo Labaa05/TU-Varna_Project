@@ -3,6 +3,11 @@ package cli;
 import domain.Product;
 
 public class PrintCommand extends BaseCommand {
+
+    /**
+     * Команда print: извежда всички налични продукти в склада.
+     */
+
     @Override public String name() { return "print"; }
     @Override public String help() { return "print - list all products"; }
 

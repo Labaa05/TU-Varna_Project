@@ -5,6 +5,11 @@ import java.util.Collections;
 import java.util.List;
 
 public class Warehouse {
+
+    /**
+     * Склад (агрегат) – съдържа списък с продукти и лог на промените.
+     */
+
     private final List<Product> products = new ArrayList<>();
     private final List<LogEntry> log = new ArrayList<>();
 

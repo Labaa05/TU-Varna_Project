@@ -9,6 +9,11 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+ * Слой с бизнес логика за операциите върху склада (add/remove/clean/log).
+ * Изпълнява правилата от условието, без да се занимава с конзолен вход/изход.
+ */
+
 public class WarehouseService {
     private double round3(double v) {
         return Math.round(v * 1000.0) / 1000.0;
@@ -25,6 +30,12 @@ public class WarehouseService {
                 && p.getUnit() == unit;
     }
 
+    /**
+     * Връща списък с продуктите, сортиран за по-лесно извеждане (име, после срок).
+     *
+     * @param wh складът в паметта
+     * @return сортиран списък с продукти
+     */
     public List<Product> listAllSorted(Warehouse wh) {
         if (wh == null) throw new IllegalArgumentException("warehouse is null");
 
@@ -40,6 +51,12 @@ public class WarehouseService {
         return copy;
     }
 
+    /**
+     * Добавя продукт в склада и записва операцията в лога.
+     *
+     * @param wh складът в паметта
+     * @param p продукт/партида за добавяне
+     */
     public void add(Warehouse wh, Product p) {
         if (wh == null) throw new IllegalArgumentException("warehouse is null");
         if (p == null) throw new IllegalArgumentException("product is null");
@@ -54,6 +71,16 @@ public class WarehouseService {
                 p.getQuantity(), p.getLocation(), "add"));
     }
 
+    /**
+     * Премахва количество от продукт по FEFO правило (най-ранен срок първо) и логва операцията.
+     *
+     * @param wh складът в паметта
+     * @param name име на продукта
+     * @param manufacturer производител
+     * @param unit мерна единица
+     * @param qty количество за премахване
+     * @return реално премахнатото количество
+     */
     public double remove(Warehouse wh, String name, String manufacturer, Unit unit, double qty) {
         if (wh == null) throw new IllegalArgumentException("warehouse is null");
         if (unit == null) throw new IllegalArgumentException("unit is null");
@@ -108,6 +135,13 @@ public class WarehouseService {
         return removed;
     }
 
+    /**
+     * Премахва продукти с expiryDate <= today + soonDays и логва премахването.
+     *
+     * @param wh складът в паметта
+     * @param soonDays 0 = само изтекли, >0 = изтекли + скоро изтичащи
+     * @return брой премахнати записи
+     */
     public int clean(Warehouse wh, int soonDays) {
         if (wh == null) throw new IllegalArgumentException("warehouse is null");
         if (soonDays < 0) throw new IllegalArgumentException("soonDays must be >= 0");
@@ -131,6 +165,14 @@ public class WarehouseService {
         return toDelete.size();
     }
 
+    /**
+     * Връща лог зSаписи в период [from, to].
+     *
+     * @param wh складът в паметта
+     * @param from начална дата/час (включително)
+     * @param to крайна дата/час (включително)
+     * @return списък с лог записи в периода
+     */
     public List<LogEntry> logBetween(Warehouse wh, LocalDateTime from, LocalDateTime to) {
         if (wh == null) throw new IllegalArgumentException("warehouse is null");
         if (from == null || to == null) throw new IllegalArgumentException("from/to is required");

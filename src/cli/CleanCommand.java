@@ -10,6 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CleanCommand extends BaseCommand {
+
+    /**
+     * Команда clean: премахва изтекли и/или скоро изтичащи продукти и записва премахването в лога.
+     */
+
     @Override public String name() { return "clean"; }
     @Override public String help() { return "clean [days] - remove expired and soon products"; }
 

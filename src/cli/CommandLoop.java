@@ -5,6 +5,11 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class CommandLoop {
+
+    /**
+     * Invoker (CLI цикъл). Чете команди от конзолата, намира съответната команда и извежда резултата.
+     */
+
     private final Map<String, Command> commands = new HashMap<>();
     private final CommandContext ctx;
 
@@ -18,6 +23,13 @@ public class CommandLoop {
 
     public void run() {
         Scanner sc = new Scanner(System.in);
+
+        System.out.println("Warehouse CLI");
+        System.out.println("Commands:");
+        for (Command c : commands.values()) {
+            System.out.println("  " + c.help());
+        }
+        System.out.println();
 
         while (!ctx.isExitRequested()) {
             System.out.print("> ");

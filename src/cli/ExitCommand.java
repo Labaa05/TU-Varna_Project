@@ -1,6 +1,11 @@
 package cli;
 
 public class ExitCommand extends BaseCommand {
+
+    /**
+     * Команда exit: прекратява изпълнението на програмата.
+     */
+
     @Override public String name() { return "exit"; }
     @Override public String help() { return "exit - quit program"; }
 

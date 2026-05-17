@@ -15,6 +15,12 @@ import java.util.List;
 
 public class WarehouseFileHandler {
 
+    /**
+     * Четене/запис на склада във файл в текстов формат (редове, разделени със ';').
+     * Поддържа зареждане (load) при open и запис (save) при save/save as.
+     */
+
+
     public static void save(String path, Warehouse wh) throws IOException {
         List<String> lines = new ArrayList<>();
         lines.add("WAREHOUSE_V1");
