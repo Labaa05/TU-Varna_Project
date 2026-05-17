@@ -136,7 +136,7 @@ public class WarehouseService {
     }
 
     /**
-     * Премахва продукти с expiryDate <= today + soonDays и логва премахването.
+     * Премахва продукти с {@code expiryDate <= today + soonDays} и логва премахването.
      *
      * @param wh складът в паметта
      * @param soonDays 0 = само изтекли, >0 = изтекли + скоро изтичащи
@@ -150,7 +150,7 @@ public class WarehouseService {
 
         List<Product> toDelete = new ArrayList<>();
         for (Product p : wh.all()) {
-            if (!p.getExpiryDate().isAfter(threshold)) { // expiry <= threshold
+            if (!p.getExpiryDate().isAfter(threshold)) {
                 toDelete.add(p);
             }
         }
