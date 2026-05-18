@@ -3,7 +3,8 @@ package cli;
 import infra.WarehouseFileHandler;
 
 /**
- ** Команда save: ... Поддържа и {@code save as <file>} за запис в друг файл. *
+ * Команда save: записва текущите данни във файла.
+ * Поддържа и {@code save as <file>} за запис в друг файл.
  */
 public class SaveCommand extends BaseCommand {
     @Override public String name() { return "save"; }
