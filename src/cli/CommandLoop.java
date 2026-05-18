@@ -4,12 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+/**
+ * Invoker (CLI цикъл). Чете команди от конзолата, намира съответната команда и извежда резултата.
+ */
 public class CommandLoop {
-
-    /**
-     * Invoker (CLI цикъл). Чете команди от конзолата, намира съответната команда и извежда резултата.
-     */
-
     private final Map<String, Command> commands = new HashMap<>();
     private final CommandContext ctx;
 

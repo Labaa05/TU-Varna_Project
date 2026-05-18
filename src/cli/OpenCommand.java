@@ -5,12 +5,10 @@ import infra.WarehouseFileHandler;
 
 import java.io.File;
 
+/**
+ * Команда open: отваря файл и зарежда данните в паметта. Ако файлът не съществува, създава празен.
+ */
 public class OpenCommand extends BaseCommand {
-
-    /**
-     * Команда open: отваря файл и зарежда данните в паметта. Ако файлът не съществува, създава празен.
-     */
-
     @Override public String name() { return "open"; }
     @Override public String help() { return "open <file> - open or create file"; }
 

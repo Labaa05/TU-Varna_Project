@@ -1,11 +1,8 @@
 package domain;
-
+/**
+ * Локация в склада: секция, рафт и позиция.
+ */
 public class Location {
-
-    /**
-     * Локация в склада: секция, рафт и позиция.
-     */
-
     private String section;
     private int shelf;
     private int number;

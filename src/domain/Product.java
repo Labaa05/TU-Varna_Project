@@ -2,12 +2,10 @@ package domain;
 
 import java.time.LocalDate;
 
+/**
+ * Модел на продукт/партида в склада: име, производител, мерна единица, количество, срок, дата на постъпване и локация.
+ */
 public class Product {
-
-    /**
-     * Модел на продукт/партида в склада: име, производител, мерна единица, количество, срок, дата на постъпване и локация.
-     */
-
     private String name;
     private String manufacturer;
     private Unit unit;

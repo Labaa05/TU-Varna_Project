@@ -2,12 +2,10 @@ package cli;
 
 import domain.Warehouse;
 
+/**
+ * Контекст на приложението (сесия). Пази текущо отворения файл, склада в паметта и флаг за незаписани промени.
+ */
 public class CommandContext {
-
-    /**
-     * Контекст на приложението (сесия). Пази текущо отворения файл, склада в паметта и флаг за незаписани промени.
-     */
-
     private String currentFile;
     private Warehouse warehouse;
     private boolean dirty;

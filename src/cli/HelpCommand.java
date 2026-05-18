@@ -2,12 +2,10 @@ package cli;
 
 import java.util.Collection;
 
+/**
+ * Команда help: извежда списък с поддържаните команди и кратко описание.
+ */
 public class HelpCommand extends BaseCommand {
-
-    /**
-     * Команда help: извежда списък с поддържаните команди и кратко описание.
-     */
-
     private final Collection<Command> all;
 
     public HelpCommand(Collection<Command> all) {

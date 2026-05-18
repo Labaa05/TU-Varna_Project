@@ -2,12 +2,10 @@ package cli;
 
 import infra.WarehouseFileHandler;
 
+/**
+ ** Команда save: ... Поддържа и {@code save as <file>} за запис в друг файл. *
+ */
 public class SaveCommand extends BaseCommand {
-
-    /**
-     ** Команда save: ... Поддържа и {@code save as <file>} за запис в друг файл. *
-     */
-
     @Override public String name() { return "save"; }
     @Override public String help() { return "save | save as <file>  (file path must not contain spaces)"; }
 

@@ -4,12 +4,10 @@ import domain.LogEntry;
 
 import java.time.LocalDate;
 
+/**
+ * Команда log: извежда лога на промените (по желание в период).
+ */
 public class LogCommand extends BaseCommand {
-
-    /**
-     * Команда log: извежда лога на промените (по желание в период).
-     */
-
     @Override public String name() { return "log"; }
     @Override public String help() { return "log [from to] - show log (YYYY-MM-DD)"; }
 

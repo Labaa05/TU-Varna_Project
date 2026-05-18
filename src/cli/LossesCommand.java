@@ -7,12 +7,10 @@ import domain.Unit;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+/**
+ * Команда losses: изчислява загубите за период по продукт и цена на база изхвърлените (expired) количества.
+ */
 public class LossesCommand extends BaseCommand {
-
-    /**
-     * Команда losses: изчислява загубите за период по продукт и цена на база изхвърлените (expired) количества.
-     */
-
     @Override public String name() { return "losses"; }
 
     @Override
